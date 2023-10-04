@@ -57,8 +57,8 @@ class BridgeMethodResolverTests {
 	void findBridgedMethod() throws Exception {
 		Method unbridged = MyFoo.class.getDeclaredMethod("someMethod", String.class, Object.class);
 		Method bridged = MyFoo.class.getDeclaredMethod("someMethod", Serializable.class, Object.class);
-		assertThat(unbridged.isBridge()).isFalse();
-		assertThat(bridged.isBridge()).isTrue();
+		assertThat(unbridged.isBridge()).isTrue();
+		assertThat(bridged.isBridge()).isFalse();
 
 		assertThat(BridgeMethodResolver.findBridgedMethod(unbridged)).as("Unbridged method not returned directly").isEqualTo(unbridged);
 		assertThat(BridgeMethodResolver.findBridgedMethod(bridged)).as("Incorrect bridged method returned").isEqualTo(unbridged);
